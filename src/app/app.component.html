@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="top">
+    <h3>Devfinder</h3>
+    
+  </div>
+  <div class="search-box">
+    <i class="fa fa-search" style="font-size:24px;color:#3362A0"></i>
+    <input type="search" placeholder="Search GitHub username..." [(ngModel)]="devService.user">
+    <button (click)="searchUser()">Search</button>
+  </div>
+
+  <div class="main-container">
+    <div class="main-top">
+      <img  [src]="dev.avatar_url">
+      <div class="info-box">
+          <p>{{dev.login}}</p>
+          <p>{{dev.company}}</p>
+          <div  ng *ngIf="dev.bio; then thenBlock; else elseBlock"></div>
+          <ng-template #thenBlock>
+              <p class="bio" *ngIf="dev.bio">{{dev.bio}}</p>
+         </ng-template>
+            <ng-template #elseBlock>
+            <p class="bio" >This user has no bio</p>
+        </ng-template>
+      </div>
+        
+       <div >
+        <p>Joined {{dev.created_at | date}}</p>
+     </div>
+    </div>
+    <div class="main-mid">
+    <div class="repo-follower-following">
+        <div class="repo boxes">
+          <p><small>Repos</small></p>
+          <p>{{dev.public_repos}}</p>
+        </div>
+      <div class="boxes">
+        <p><small>Followers</small></p>
+        <p>{{dev.followers}}</p>
+      </div>
+      <div class="boxes">
+        <p><small>following</small></p>
+        <p>{{dev.following}}</p>
+      </div> 
+    </div>
+  </div>
+
+ <div class="links">
+  <i class="fa fa-github" style="margin-right:1em;color:white;" aria-hidden="true"></i>
+  <a [href]="dev.html_url" target="_blank">Github</a>
+</div>
+
+</div>
+</div>
+
+
+
